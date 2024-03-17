@@ -1,25 +1,29 @@
-
-import './App.css'
-import { RecoilRoot, useRecoilState } from 'recoil';
+import "./App.css";
+import { RecoilRoot, useRecoilValue } from "recoil";
+import { todoAtomFamily } from "./atoms.js";
 
 function App() {
-  return <RecoilRoot>
-    <Todo id={1}/>
-    <Todo id={2} />
-  </RecoilRoot>
+  return (
+    <RecoilRoot>
+      <Todo id={1} />
+      <Todo id={2} />
+      <Todo id={2} />
+    </RecoilRoot>
+  );
 }
 
-function Todo({id}) {
+function Todo({ id }) {
   // get atom using atomFamily and render under return
+  const todo = useRecoilValue(todoAtomFamily(id));
 
   return (
     <h4>
-      {"title here"}
+      {todo.title}
       <br />
-      {"description here"}
+      {todo.description}
       <br />
     </h4>
-  )
+  );
 }
 
-export default App
+export default App;
